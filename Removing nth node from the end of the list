@@ -1,0 +1,37 @@
+class Solution {
+    
+    ListNode reverse(ListNode head){
+        if(head==null)return null;
+        if(head.next==null)return head;
+        
+        ListNode rev=reverse(head.next);
+        head.next.next=head;
+        head.next=null;
+        return rev;
+        
+    }
+    
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        
+        if(head==null)return null;
+        if(head.next==null && n==1)return null;
+        
+        ListNode h=reverse(head);
+        int i=1;
+        ListNode temp=h;
+        while(temp!=null &&i<n-1){    
+            temp=temp.next;
+            i++;
+        }
+        if(temp==null)
+            return head;
+        if(n==1)
+            return reverse(temp.next);
+    
+         temp.next=temp.next.next;
+        
+        return reverse(h);
+        
+    }
+}
+//O(n);
