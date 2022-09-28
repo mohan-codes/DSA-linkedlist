@@ -1,0 +1,57 @@
+ brute force very slow
+ //O(n^2)
+ public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA==null || headB==null){
+            return null;
+        }
+        ListNode t1=headA;
+        ListNode t2=headB;
+        while(t1!=null){
+            t2=headB;
+            while(t2!=null){
+                if(t1==t2){
+                    return t1;
+                }
+             t2=t2.next;   
+            }
+            t1=t1.next;
+        }
+        return null;
+    }
+}
+//2nd
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA==null || headB==null){
+            return null;
+        }
+        ListNode t1=headA;
+        ListNode t2=headB;
+        while(t1!=t2){
+            if(t1!=null){
+                t1=t1.next;
+                
+            }else{
+                t1=headA;
+            }
+            if(t2!=null){
+                t2=t2.next;
+                
+            }else{
+                t2=headB;
+            }
+        }
+        return t1;
+    }
+}
+
+//3rd
+ListNode currentA = headA, currentB = headB;
+        
+        while(currentA != currentB){
+            if(currentA != null) currentA = currentA.next; else currentA = headB;
+            if(currentB != null) currentB = currentB.next; else currentB = headA;
+        }
+        return currentA;
+//4th
